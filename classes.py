@@ -9,42 +9,72 @@ java/ in any OOP (object oriented programming) (also functional programming, imp
 - other implementation methods (in python, we call them the double underscore class methods, a special naming convention)
 double underscore AKA dunder methods are a set of special keywords 
 '''
+# class Person:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
 
-class Person:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
+#     # how to intrepret this class/object as a string?
+#     def __str__(self):
+#         return f"i am {self.name} and i am {self.age} years old"
 
-    # how to intrepret this class/object as a string?
-    def __str__(self):
-        return f"i am {self.name} and i am {self.age} years old"
+#     # attribute function
+#     def sayHello(self):
+#         print("hello! my name is ", self.name)
 
-    # attribute function
-    def sayHello(self):
-        print("hello! my name is ", self.name)
+# allen = Person("allen", 20)
+# # allen.sayHello()
+# kevin = Person("kevin", 21)
 
-allen = Person("allen", 20)
-# allen.sayHello()
-kevin = Person("kevin", 21)
+# allen.sayHello
 
-allen.sayHello
+# print(allen)
+# print(kevin)
 
-print(allen)
-print(kevin)
+# lets talk about class inheritance
+'''
+class inheritance
+the child class inherits all of the parent class's attributes and attribute functions
+'''
+# a car (child class) is one type of vehicle (parent class)
 
 
+class Vehicle:
+    def __init__(self, maker, color, numWheels, topSpeed, gasCapacity):
+        self.maker = maker
+        self.color = color
+        self.numWheels = numWheels
+        self.topSpeed = topSpeed
+        self.gasCapacity = gasCapacity
+    
+    def honkHorn(self):
+        print("beep beep I have ", self.numWheels, " wheels")
 
-class Car: # an idea or an blueprint
+
+class Motorcycle(Vehicle):
+     def __init__(self, maker, color, helmets):
+        # super() returns the parent class (here super() = Vehicle)
+        super().__init__(maker, color, 2, 150, 30)
+
+        self.helmets = helmets
+
+myBike = Motorcycle("honda", "red", 2)
+print("helmets", myBike.helmets)
+print("bike topspeed", myBike.topSpeed)
+myBike.honkHorn()
+
+
+class Car(Vehicle): # an idea or an blueprint
 
     # __init__ is your constructor, pass in all the information you need to "create" or "define" a Car
     # def __init__(self, manufacturer, model, license_plate, color):
-    def __init__(self, manufacturer, color, front_seats, back_seats):
+    def __init__(self, maker, color, front_seats, back_seats):
+        # super() returns the parent class (here super() = Vehicle)
+        super().__init__(maker, color, 4, 100, 75)
 
         # each self._____ is an attribute attached to the self, which an instance (an object) of the class
-        self.maker = manufacturer
         # self.model = model
         # self.plate = license_plate
-        self.color = color
         self.front_row_seats = front_seats
         self.back_row_seats = back_seats
 
@@ -63,6 +93,11 @@ class Car: # an idea or an blueprint
 
 kevinsCar = Car('Ford', "silver", 2, 3)
 allensCar = Car("mini", "red", 1, 1)
+print("kevin's car color:", kevinsCar.color)
+kevinsCar.honkHorn()
+
+# print(isinstance(kevinsCar, Vehicle))
+# print(isinstance(kevinsCar, Car))
 
 # print(kevinsCar.color)
 # kevinsCar.printColor()
@@ -97,10 +132,10 @@ allensCar = Car("mini", "red", 1, 1)
 # for car in ourCars:
 #     print(car.plate)
 
-
-
-
-#print(isinstance())
+# "allen is an object instance of a Person"
+# print(isinstance(allen, Person))
+# print(isinstance(allen, Car))
+# print(isinstance())
 
 
 
